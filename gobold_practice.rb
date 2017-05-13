@@ -27,7 +27,13 @@ doc.search(".items-box").each do |item|
   item_doc = Nokogiri::HTML(item_page)
   category = item_doc.css('tr')[1].css('a')[0].text.strip
   sub_category = item_doc.search('.item-detail-table-sub-category').text.strip
+  user_url = item_doc.css('tr')[0].css('a').attribute('href').value
   p category
   p sub_category
+
+  user_page = open(user_url)
+  user_doc = Nokogiri::HTML(user_page)
+  user_name = user_doc.search('.users-detail-title').text.strip
+  p user_name
   break
 end
