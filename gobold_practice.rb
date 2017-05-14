@@ -34,6 +34,8 @@ doc.search(".items-box").each do |item|
   user_page = open(user_url)
   user_doc = Nokogiri::HTML(user_page)
   user_name = user_doc.search('.users-detail-title').text.strip
+  user_score = user_doc.search('.users-detail-score').text.split(' ')[1]
   p user_name
+  p user_score
   break
 end
